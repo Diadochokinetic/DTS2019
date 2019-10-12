@@ -70,6 +70,7 @@ class SocketServer:
                             message = file.read()
                             message_binary = str.encode(message)
                             client_sock.send(message_binary)
+                            file.close()
                         i += 1
                     n_files = len(os.listdir(mydir))
 
