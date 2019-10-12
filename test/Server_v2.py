@@ -69,6 +69,7 @@ class SocketServer:
                             file  = open(mydir+f, 'r')
                             message = file.read()
                             message_binary = str.encode(message)
+                            print(message_binary)
                             client_sock.send(message_binary)
                             file.close()
                         i += 1
