@@ -111,11 +111,20 @@ class SocketServer:
         return 0
  
 def main():
-    server = SocketServer()
-    while True:
-        server.run_server()
-        server.reinit()
-    print('Exiting')
+    try:
+        mydir = 'test_data/'
+        server = SocketServer()
+        while True:
+            server.run_server()
+            server.reinit()
+    except KeyboardInterrupt:
+        #clean directory
+        filelist = [ f for f in os.listdir(mydir) if f.endswith(".csv") ]
+        for f in filelist:
+            os.remove(os.path.join(mydir, f))
+        print('Exiting')
+        server.Close()
+        server = None
  
 if __name__ == "__main__":
     main()
