@@ -34,6 +34,7 @@ class SocketServer:
         #number of files in directory
         mydir = 'test_data/'
         n_files = len(os.listdir(mydir))
+        print(n_files)
  
         stop = False
         x = 1
@@ -64,6 +65,7 @@ class SocketServer:
                 if len(os.listdir(mydir)) > n_files:
                     filelist = [ f for f in os.listdir(mydir) if f.endswith(".csv") ]
                     i = 1
+                    print(i)
                     for f in filelist:
                         if i > n_files:
                             file  = open(mydir+f, 'r')
