@@ -79,6 +79,8 @@ class SocketServer:
                 #print('Neue Files vorhanden')
                 #print(filelist)
                 for f in filelist:
+
+                    print('fileindex: {self.fileindex}')
                     
                     if f not in self.indexfile:
                     #if i > n_files:
