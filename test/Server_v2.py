@@ -123,7 +123,7 @@ def main():
         for f in filelist:
             os.remove(os.path.join(mydir, f))
         print('Exiting')
-        server.Close()
+        server.close()
         server = None
  
 if __name__ == "__main__":
