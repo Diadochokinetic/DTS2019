@@ -4,7 +4,7 @@ import select
 class SocketServer:
     """ Simple socket server that listens to one single client. """
  
-    def __init__(self, host = '0.0.0.0', port = 2010):
+    def __init__(self, host = '192.168.0.100', port = 8000):
         """ Initialize the server with a host and port to listen to. """
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
