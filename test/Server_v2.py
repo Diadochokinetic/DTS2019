@@ -72,6 +72,7 @@ class SocketServer:
                     filelist = [ f for f in os.listdir(mydir) if f.endswith(".csv") ]
                     i = 1
                     print('Neue Files vorhanden')
+                    print(filelist)
                     for f in filelist:
                         if i > n_files:
                             file  = open(mydir+f, 'r')
