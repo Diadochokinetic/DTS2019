@@ -100,10 +100,11 @@ class SocketServer:
         return 0
  
 def main():
+    server = SocketServer()
     while True:
-        server = SocketServer()
+        #server = SocketServer()
         server.run_server()
-        server.close()
+        server.sock.close()
     print('Exiting')
  
 if __name__ == "__main__":
