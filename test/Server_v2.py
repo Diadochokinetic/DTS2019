@@ -97,6 +97,7 @@ class SocketServer:
         # Close socket
         print('Closing connection with {}'.format(client_addr))
         client_sock.close()
+        client_sock = None
         return 0
  
 def main():
