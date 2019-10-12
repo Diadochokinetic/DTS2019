@@ -16,17 +16,14 @@ class SocketServer:
         self.sock.bind((host, port))
         self.sock.listen(1)
         self.indexfile = indexfile
-        print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Starting socket server (host {}, port {})'.format(self.host, self.port))
+        print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' ' + 'Starting socket server (host {}, port {})'.format(self.host, self.port))
 
     def reinit(self):
         self.sock.listen(1)
-
-    def timestamp(self):
-        return datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
  
     def close(self):
         """ Close the server socket. """
-        print('Closing server socket (host {}, port {})'.format(self.host, self.port))
+        print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' ' + 'Closing server socket (host {}, port {})'.format(self.host, self.port))
         if self.sock:
             self.sock.close()
             self.sock = None
@@ -37,8 +34,8 @@ class SocketServer:
  
         client_sock, client_addr = self.sock.accept()
  
-        print('Client {} connected'.format(client_addr))
-        print('Socket {} connected'.format(client_sock))
+        print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' ' + 'Client {} connected'.format(client_addr))
+        print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' ' + 'Socket {} connected'.format(client_sock))
 
         #delete files in directory
         #mydir = 'test_data/'
@@ -99,7 +96,7 @@ class SocketServer:
                         try:
                             client_sock.send(message_binary)
                             self.indexfile.append(f)
-                            print(f'file {f} has been sent to {client_addr}')
+                            print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' ' + f'file {f} has been sent to {client_addr}')
                         except:
                             stop = True
                         file.close()
@@ -111,11 +108,11 @@ class SocketServer:
 
             
             else:
-                print("No client is connected, SocketServer can't receive data")
+                print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' ' + "No client is connected, SocketServer can't receive data")
                 stop = True
  
         # Close socket
-        print('Closing connection with {}'.format(client_addr))
+        print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' ' + 'Closing connection with {}'.format(client_addr))
         client_sock.close()
         client_sock = None
         return 0
