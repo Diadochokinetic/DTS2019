@@ -31,6 +31,7 @@ class SocketServer:
         print('Socket {} connected'.format(client_sock))
  
         stop = False
+        x = 1
         while not stop:
             if client_sock:
 
@@ -56,7 +57,10 @@ class SocketServer:
                             client_sock.send(b'cool data')
                 """
                 time.sleep(5)
-                client_sock.send(b'cool data')
+                message = 'test ' + str(x)
+                message_binary = ' '.join(format(ord(i), 'b') for i in message)
+                client_sock.send(message_binary)
+                x += 1
 
 
             else:
