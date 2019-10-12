@@ -16,7 +16,7 @@ class SocketServer:
         self.sock.bind((host, port))
         self.sock.listen(1)
         self.indexfile = indexfile
-        print(timestamp() + ' Starting socket server (host {}, port {})'.format(self.host, self.port))
+        print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + ' Starting socket server (host {}, port {})'.format(self.host, self.port))
 
     def reinit(self):
         self.sock.listen(1)
