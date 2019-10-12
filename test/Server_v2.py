@@ -103,6 +103,7 @@ def main():
     while True:
         server = SocketServer()
         server.run_server()
+        server.close()
     print('Exiting')
  
 if __name__ == "__main__":
