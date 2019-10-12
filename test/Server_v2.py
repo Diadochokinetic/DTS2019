@@ -6,7 +6,7 @@ import os
 class SocketServer:
     """ Simple socket server that listens to one single client. """
  
-    def __init__(self, host = '192.168.0.100', port = 8000):
+    def __init__(self, host = '192.168.0.100', port = 8000, indexfile = []):
         """ Initialize the server with a host and port to listen to. """
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -14,7 +14,7 @@ class SocketServer:
         self.port = port
         self.sock.bind((host, port))
         self.sock.listen(1)
-        self.indexfile = []
+        self.indexfile = indexfile
         print('Starting socket server (host {}, port {})'.format(self.host, self.port))
 
     def reinit(self):
