@@ -71,16 +71,17 @@ class SocketServer:
                 if len(os.listdir(mydir)) > n_files:
                     filelist = [ f for f in os.listdir(mydir) if f.endswith(".csv") ]
                     i = 1
-                    print('Neue Files')
+                    print('Neue Files vorhanden')
                     for f in filelist:
                         if i > n_files:
                             file  = open(mydir+f, 'r')
                             message = file.read()
                             message_binary = str.encode(message)
-                            print(f'neues file {f} wird gesendet')
+                            print(f'Neues File {f} wird gesendet')
                             client_sock.send(message_binary)
                             file.close()
                         i += 1
+                    print('Alle neuen Files wurden gesendet')
                     n_files = len(os.listdir(mydir))
 
                 #time.sleep(5)
