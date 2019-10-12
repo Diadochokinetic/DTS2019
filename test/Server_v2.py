@@ -14,6 +14,7 @@ class SocketServer:
         self.port = port
         self.sock.bind((host, port))
         self.sock.listen(1)
+        self.indexfile = []
         print('Starting socket server (host {}, port {})'.format(self.host, self.port))
 
     def reinit(self):
@@ -36,18 +37,18 @@ class SocketServer:
         print('Socket {} connected'.format(client_sock))
 
         #delete files in directory
-        mydir = 'test_data/'
-        filelist = [ f for f in os.listdir(mydir) if f.endswith(".csv") ]
-        for f in filelist:
-            os.remove(os.path.join(mydir, f))
+        #mydir = 'test_data/'
+        #filelist = [ f for f in os.listdir(mydir) if f.endswith(".csv") ]
+        #for f in filelist:
+        #    os.remove(os.path.join(mydir, f))
 
         #number of files in directory
         mydir = 'test_data/'
-        n_files = len(os.listdir(mydir))
-        print(f'number of files in the directory: {n_files}')
+        #n_files = len(os.listdir(mydir))
+        #print(f'number of files in the directory: {n_files}')
  
         stop = False
-        x = 1
+        #x = 1
         while not stop:
             if client_sock:
 
@@ -72,26 +73,31 @@ class SocketServer:
                         else:
                             client_sock.send(b'cool data')
                 """
-                if len(os.listdir(mydir)) > n_files:
-                    filelist = [ f for f in os.listdir(mydir) if f.endswith(".csv") ]
-                    i = 1
-                    print('Neue Files vorhanden')
-                    print(filelist)
-                    for f in filelist:
-                        if i > n_files:
-                            file  = open(mydir+f, 'r')
-                            message = file.read()
-                            message_binary = str.encode(message)
-                            print(f'Neues File {f} wird gesendet')
-                            try:
-                                client_sock.send(message_binary)
-                            except:
-                                stop = True
-                            file.close()
-                        i += 1
-                    print('Alle neuen Files wurden gesendet')
-                    n_files = len(os.listdir(mydir))
-                    print(f'number of files in the directory: {n_files}')
+                #if len(os.listdir(mydir)) > n_files:
+                filelist = [ f for f in os.listdir(mydir) if f.endswith(".csv") ]
+                #i = 1
+                #print('Neue Files vorhanden')
+                #print(filelist)
+                for f in filelist:
+                    
+                    if f not in self.indexfile:
+                    #if i > n_files:
+                        file  = open(mydir+f, 'r')
+                        message = file.read()
+                        message_binary = str.encode(message)
+                        #print(f'Neues File {f} wird gesendet')
+                        try:
+                            client_sock.send(message_binary)
+                            self.indexfile.append(f)
+                            print(f'file {f} has been sent to {client_addr}')
+                        except:
+                            stop = True
+                        file.close()
+
+                    #i += 1
+                #print('Alle neuen Files wurden gesendet')
+                #n_files = len(os.listdir(mydir))
+                #print(f'number of files in the directory: {n_files}')
 
             
             else:
@@ -107,9 +113,7 @@ class SocketServer:
 def main():
     server = SocketServer()
     while True:
-        #server = SocketServer()
         server.run_server()
-        #server.sock.close()
         server.reinit()
     print('Exiting')
  
