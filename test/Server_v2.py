@@ -111,7 +111,7 @@ def main():
     while True:
         #server = SocketServer()
         server.run_server()
-        server.sock.close()
+        #server.sock.close()
         server.reinit()
     print('Exiting')
  
