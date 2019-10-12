@@ -92,7 +92,7 @@ class SocketServer:
                 #client_sock.send(message_binary)
                 #x += 1
                 #check if connection is still there
-                client_sock, client_addr = self.sock.accept()
+                
 
 
             else:
