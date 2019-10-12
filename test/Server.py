@@ -49,7 +49,7 @@ class SocketServer:
                         if read_data.rstrip() == 'quit':
                             stop = True
                         else:
-                            client_sock.send('cool data')
+                            client_sock.send(b'cool data')
             else:
                 print("No client is connected, SocketServer can't receive data")
                 stop = True
