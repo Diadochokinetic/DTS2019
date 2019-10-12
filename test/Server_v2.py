@@ -58,7 +58,7 @@ class SocketServer:
                 """
                 time.sleep(5)
                 message = 'test ' + str(x)
-                message_binary = ' '.join(format(ord(i), 'b') for i in message)
+                message_binary = str.encode(message)
                 client_sock.send(message_binary)
                 x += 1
 
