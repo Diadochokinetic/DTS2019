@@ -50,6 +50,9 @@ class SocketServer:
         stop = False
         #x = 1
         while not stop:
+
+            time.sleep(1)
+
             if client_sock:
 
                 """
@@ -80,9 +83,10 @@ class SocketServer:
                 #print(filelist)
                 for f in filelist:
 
-                    print('fileindex: {self.fileindex}')
+                    #print(f'fileindex: {self.fileindex}')
                     
                     if f not in self.indexfile:
+
                     #if i > n_files:
                         file  = open(mydir+f, 'r')
                         message = file.read()
