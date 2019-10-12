@@ -79,22 +79,17 @@ class SocketServer:
                             message = file.read()
                             message_binary = str.encode(message)
                             print(f'Neues File {f} wird gesendet')
-                            client_sock.send(message_binary)
+                            try:
+                                client_sock.send(message_binary)
+                            except:
+                                stop = True
                             file.close()
                         i += 1
                     print('Alle neuen Files wurden gesendet')
                     n_files = len(os.listdir(mydir))
                     print(f'number of files in the directory: {n_files}')
 
-                #time.sleep(5)
-                #message = 'test ' + str(x) + ' \n'
-                #message_binary = str.encode(message)
-                #client_sock.send(message_binary)
-                #x += 1
-                #check if connection is still there
-                
-
-
+            
             else:
                 print("No client is connected, SocketServer can't receive data")
                 stop = True
