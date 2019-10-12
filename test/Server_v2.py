@@ -57,7 +57,7 @@ class SocketServer:
                             client_sock.send(b'cool data')
                 """
                 time.sleep(5)
-                message = 'test ' + str(x)
+                message = 'test ' + str(x) + ' \n'
                 message_binary = str.encode(message)
                 client_sock.send(message_binary)
                 x += 1
