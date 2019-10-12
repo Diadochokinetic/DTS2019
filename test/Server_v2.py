@@ -1,6 +1,7 @@
 import socket
 import select
 import time
+import datetime
 import os
  
 class SocketServer:
@@ -15,10 +16,13 @@ class SocketServer:
         self.sock.bind((host, port))
         self.sock.listen(1)
         self.indexfile = indexfile
-        print('Starting socket server (host {}, port {})'.format(self.host, self.port))
+        print(timestamp() + ' Starting socket server (host {}, port {})'.format(self.host, self.port))
 
     def reinit(self):
         self.sock.listen(1)
+
+    def timestamp(self):
+        return datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
  
     def close(self):
         """ Close the server socket. """
@@ -128,7 +132,7 @@ def main():
         filelist = [ f for f in os.listdir(mydir) if f.endswith(".csv") ]
         for f in filelist:
             os.remove(os.path.join(mydir, f))
-        print('Exiting')
+        print(' KeyboardInterrupt')
         server.close()
         server = None
  
