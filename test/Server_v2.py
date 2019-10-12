@@ -14,6 +14,7 @@ class SocketServer:
         self.port = port
         self.sock.bind((host, port))
         self.sock.listen(1)
+        print('Starting socket server (host {}, port {})'.format(self.host, self.port))
 
     def reinit(self):
         self.sock.listen(1)
@@ -27,7 +28,7 @@ class SocketServer:
  
     def run_server(self):
         """ Accept and handle an incoming connection. """
-        print('Starting socket server (host {}, port {})'.format(self.host, self.port))
+        #print('Starting socket server (host {}, port {})'.format(self.host, self.port))
  
         client_sock, client_addr = self.sock.accept()
  
