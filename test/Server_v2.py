@@ -1,6 +1,7 @@
 import socket
 import select
 import time
+import os
  
 class SocketServer:
     """ Simple socket server that listens to one single client. """
@@ -29,6 +30,10 @@ class SocketServer:
  
         print('Client {} connected'.format(client_addr))
         print('Socket {} connected'.format(client_sock))
+
+        #number of files in directory
+        mydir = 'test_data/'
+        n_files = len(os.listdir(mydir))
  
         stop = False
         x = 1
@@ -56,11 +61,23 @@ class SocketServer:
                         else:
                             client_sock.send(b'cool data')
                 """
-                time.sleep(5)
-                message = 'test ' + str(x) + ' \n'
-                message_binary = str.encode(message)
-                client_sock.send(message_binary)
-                x += 1
+                if len(os.listdir(mydir)) > n_files:
+                    filelist = [ f for f in os.listdir(mydir) if f.endswith(".csv") ]
+                    i = 1
+                    for f in filelist:
+                        if i > n_files:
+                            file  = open(mydir+f, 'r')
+                            message = file.read()
+                            message_binary = str.encode(message)
+                            client_sock.send(message_binary)
+                        i += 1
+                    n_files = len(os.listdir(mydir))
+
+                #time.sleep(5)
+                #message = 'test ' + str(x) + ' \n'
+                #message_binary = str.encode(message)
+                #client_sock.send(message_binary)
+                #x += 1
 
 
             else:
