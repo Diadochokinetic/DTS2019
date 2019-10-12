@@ -27,6 +27,7 @@ class SocketServer:
         client_sock, client_addr = self.sock.accept()
  
         print('Client {} connected'.format(client_addr))
+        print('Socket {} connected'.format(client_sock))
  
         stop = False
         while not stop:
