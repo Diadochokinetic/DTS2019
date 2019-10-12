@@ -12,7 +12,7 @@ for f in filelist:
 x = 1
 while True:
     time.sleep(5)
-    l = [x for x in range(2)]
+    l = [y for y in range(2)]
     with open(mydir+'file'+str(x)+'.csv', 'w', newline='') as file:
         wr = csv.writer(file, quoting=csv.QUOTE_ALL)
         wr.writerow(l)

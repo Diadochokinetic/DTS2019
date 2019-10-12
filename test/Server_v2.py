@@ -83,6 +83,7 @@ class SocketServer:
                         i += 1
                     print('Alle neuen Files wurden gesendet')
                     n_files = len(os.listdir(mydir))
+                    print(f'number of files in the directory: {n_files}')
 
                 #time.sleep(5)
                 #message = 'test ' + str(x) + ' \n'
